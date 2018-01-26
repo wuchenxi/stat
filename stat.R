@@ -69,6 +69,14 @@ colvarse=colSums((X-Xg)^2)/(dim(X)[1]-1)
 print(colvarsg/colvars)
 print(colvarse/colvars)
 
+###mixed model
+library(lme4)
+fe=factor(labs)
+fg=factor(c(1:(nrow(X)/3),1:(nrow(X)/3),1:(nrow(X)/3)))
+for(i in 1:13){
+    res=glmer(X[,i]~1+(1|fe)+(1|fg))
+    print(res)}
+
 ###Phenotype correlation
 library(psych)
 options(scipen=999,nsmall=6)
